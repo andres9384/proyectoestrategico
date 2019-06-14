@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { LoadingController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginPage implements OnInit {
     password:"123", 
   }
 
-  constructor(public loadingCtrl:LoadingController) { }
+  constructor(public loadingCtrl:LoadingController, public navCtrl:NavController) { }
 
   ngOnInit() {
   }
@@ -32,8 +33,9 @@ export class LoginPage implements OnInit {
       this.loadingCtrl.dismiss();
  
     console.log('ingreso a login');
-    if(this.User.usuario === forma.value.user){
+    if(this.User.usuario === forma.value.user && this.User.password === forma.value.cont){
       console.log("verdadero");
+      this.navCtrl.navigateForward('/tabs1');
     }
     else{
       console.log("falso");
